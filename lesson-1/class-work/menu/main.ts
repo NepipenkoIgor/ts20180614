@@ -1,27 +1,54 @@
 interface IMenu {
     title: string;
-    items: string[];
+    items?:  IMenu[];
 }
 
 const menuList: IMenu[] = [
     {
-        title: 'JavaScript',
-        items: ['Angular', 'Vue', 'React']
+        title: 'Животные ', items: [
+        {
+            title: 'Млекопитающие', items: [
+            {title: 'Коровы'},
+            {title: 'Ослы'},
+            {title: 'Собаки'},
+            {title: 'Тигры'}
+        ]
+        },
+        {
+            title: 'Другие', items: [
+            {title: 'Змеи'},
+            {title: 'Птицы'},
+            {title: 'Ящерицы'},
+        ],
+        },
+    ]
     },
     {
-        title: 'Dart',
-        items: ['Angular', 'Polymer']
+        title: 'Рыбы', items: [
+        {
+            title: 'Аквариумные', items: [
+            {title: 'Гуппи'},
+            {title: 'Скалярии'}
+        ]
+        },
+        {
+            title: 'Форель', items: [
+            {title: 'Морская форель'}
+        ]
+        },
+    ]
     }
 ];
 
 function generateMenu(list: IMenu[]): string {
     let content = `<ul>`;
     for (const a of list) {
-        content += `<li><a class='title'>${a.title}</a><ul>`;
-        for (const item of a.items) {
-            content += `<li><a>${item}</a></li>`;
+        const className = a.items ? 'title' : 'null';
+        content += `<li><a class=${className}>${a.title}</a>`;
+        if (a.items) {
+            content += generateMenu(a.items);
         }
-        content += `</li></ul>`;
+        content += `</li>`;
     }
     content += `</ul>`;
     return content;
@@ -42,3 +69,4 @@ if (navMenuList) {
         parentLi.classList.toggle('menu-open');
     };
 }
+
