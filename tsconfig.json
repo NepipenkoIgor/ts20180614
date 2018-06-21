@@ -59,6 +59,6 @@
   "include": [
     "lesson-1/class-work/example-ts.ts",
     "lesson-1/class-work/class-work.ts",
-    "lesson-1/class-work/menu/main.ts"
+    "lesson-1/class-work/menu1/main.ts"
   ]
 }
