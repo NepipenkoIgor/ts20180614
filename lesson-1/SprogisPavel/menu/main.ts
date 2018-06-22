@@ -49,7 +49,6 @@ function generateMenu(list: MenuItem[]): string {
         if (item.items) {
             content += `<ul>${generateMenu(item.items)}</ul>`;
         }
-
     }
 
     content += `</ul>`;
