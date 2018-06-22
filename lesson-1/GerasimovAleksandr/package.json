@@ -1,15 +1,14 @@
 {
-  "name": "ts20180614",
+  "name": "gerasimovaleksandr",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "./node_modules/.bin/tsc"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "tslint": "^5.10.0",
     "typescript": "^2.9.2"
   }

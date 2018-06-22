@@ -14,7 +14,7 @@
     font-weight: 600;
   }
   
-  .menu li.open>a.title:before {
+  .menu li.menu-open>a.title:before {
     float: left;
     content: "";
     display: block;
@@ -39,6 +39,6 @@
   .menu ul li ul{
     display:none;
   }
-  .menu .open>ul {
+  .menu .menu-open>ul {
     display: block;
   }

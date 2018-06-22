@@ -1,20 +1,20 @@
 .menu li {
     cursor:pointer;
     list-style-type:none;
-  }
-  .menu li a {
+}
+.menu li a {
     display:block;
     cursor:pointer;
     -moz-user-select: none;
     -khtml-user-select: none;
     -webkit-user-select: none;
     user-select: none;
-  }
-  .menu li a:hover{
+}
+.menu li a:hover{
     font-weight: 600;
-  }
-  
-  .menu li.open>a.title:before {
+}
+
+.menu li.menu-open>a.title:before {
     float: left;
     content: "";
     display: block;
@@ -23,9 +23,9 @@
     border-left: 5px solid green;
     margin-top: 3px;
     margin-right: 5px;
-  }
-  
-  .menu li a.title:before {
+}
+
+.menu li a.title:before {
     float: left;
     content: "";
     display: block;
@@ -34,11 +34,11 @@
     border-left: 5px solid transparent;
     margin-top: 7px;
     margin-right: 5px;
-  }
-  
-  .menu ul li ul{
+}
+
+.menu ul li ul{
     display:none;
-  }
-  .menu .open>ul {
-    display: block;
-  }
+}
+.menu .menu-open>ul {
+    display:block;
+}

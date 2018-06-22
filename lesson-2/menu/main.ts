@@ -1,9 +1,10 @@
 interface IMenu {
     title: string;
+    link?: string;
     items?: IMenu[];
 }
 
-const listMenu: IMenu[] = [
+const menuList: IMenu[] = [
     {
         title: 'Животные',
         items: [
@@ -45,29 +46,56 @@ const listMenu: IMenu[] = [
     },
 ];
 
-function generateMenu(list: IMenu[]): string {
-    let content = '<ul>';
-    list.forEach(a => {
-        const flag = a.items !== undefined && a.items.length,
-            templ = flag ? `<a class='title'>${a.title}</a>${generateMenu(a.items as IMenu[])}` : `<a>${a.title}</a>`;
-
-        content += `<li>${templ}</li>`;
-    });
-    content += '</ul>';
-    return content;
+type MenuOpt = {
+    element: HTMLElement;
+    menuList: IMenu[]
 }
 
-let navMenuList: HTMLDivElement | null = document.querySelector('.menu');
+abstract class MenuGenerator {
+    protected abstract _clickHandler(this: HTMLElement, ev: MouseEvent): void;
 
-if (navMenuList) {
-    navMenuList.innerHTML = generateMenu(listMenu);
-    navMenuList.onclick = (e: MouseEvent) => {
-        const el: HTMLAnchorElement = e.target as HTMLAnchorElement;
-        const classList = el.classList;
+    protected abstract _generateMenu(menuList: IMenu[]): string;
+}
+
+class Menu extends MenuGenerator {
+    public constructor(
+        opt: MenuOpt
+    ) {
+        super();
+        opt.element.innerHTML = this._generateMenu(opt.menuList);
+        opt.element.addEventListener('click', this._clickHandler);
+    }
+
+
+    protected _clickHandler(this: HTMLElement, ev: MouseEvent): void {
+        const el: HTMLAnchorElement = ev.target as HTMLAnchorElement;
+        const classList: DOMTokenList = el.classList;
         if (!classList.contains('title')) {
             return;
         }
-        const parentLi = el.parentNode as HTMLElement;
+        const parentLi: HTMLLIElement = el.parentNode as HTMLLIElement;
         parentLi.classList.toggle('menu-open');
     };
+
+    protected _generateMenu(menuList: IMenu[]): string {
+        return `<ul>${menuList.reduce((acc: string, next: IMenu) => {
+            acc += `<li><a ${next.items ? 'class=title' : ''}
+            ${next.link ? 'href=' + next.link : ''}>${next.title}</a>`;
+            if (!next.items) {
+                acc += `</li>`;
+                return acc;
+            }
+            acc += `${this._generateMenu(next.items)}`;
+            return acc;
+        }, ``)}</ul>`;
+    };
+
+}
+
+const element: HTMLElement | null = document.querySelector('.menu');
+if (element) {
+    const nav: Menu = new Menu({
+        element,
+        menuList
+    });
 }
