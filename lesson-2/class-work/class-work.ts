@@ -123,4 +123,4 @@
 //
 // }
 
-const a = new A();
+// const a = new A();
