@@ -49,4 +49,13 @@ function getUnique() {
 var u = getUnique(5, 6, 5, '6', 88, 907, 22, 108, 22);
 console.log(u);
 function reverseData(text) {
+    var output = '';
+    var result;
+    var regexp = /\w/gi;
+    while (result = regexp.exec(text)) {
+        alert('Найдено: ' + result[0] + ' на позиции:' + result.index);
+        alert('Свойство lastIndex: ' + regexp.lastIndex);
+    }
+    return output;
 }
+reverseData('s1ta$%r3t 2 hel^low');
