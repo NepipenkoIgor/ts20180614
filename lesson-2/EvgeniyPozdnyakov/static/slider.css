@@ -1,0 +1,19 @@
+.slider-ui {
+    position: relative;
+    padding: 16px;
+    background: #ddd;
+}
+
+.slider-ui .axis {
+    height: 2px;
+    background: #999;
+}
+
+.slider-ui .handle {
+    position: absolute;
+    width: 44px;
+    height: 44px;
+    border: 2px solid #999;
+    border-radius: 22px;
+    background: #fff;
+}
