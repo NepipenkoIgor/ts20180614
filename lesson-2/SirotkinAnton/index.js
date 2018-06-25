@@ -13,7 +13,7 @@ function summator() {
     for (var _i = 0; _i < arguments.length; _i++) {
         arg[_i] = arguments[_i];
     }
-    return arg.reduce(function (item, summ) { return summ + parseInt(item, 10); }, 0);
+    return arg.reduce(function (summ, item) { return summ + (typeof item === 'string' ? parseInt(item, 10) : item); }, 0);
 }
 // 3
 function getUnique() {
@@ -30,12 +30,7 @@ function revertWord(word) {
     var reg = /^[a-zA-Z]+$/;
     var toRevert = start.filter(function (letter) { return reg.test(letter); }).reverse();
     var i = 0;
-    return start.map(function (letter) {
-        if (reg.test(letter)) {
-            return toRevert[i++];
-        }
-        return letter;
-    }).join('');
+    return start.map(function (letter) { return reg.test(letter) ? toRevert[i++] : letter; }).join('');
 }
 // 4
 function revertSugWords(sug) {
