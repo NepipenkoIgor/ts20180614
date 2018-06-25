@@ -1,11 +1,13 @@
 "use strict";
+// 1
 function isInArray() {
     var arg = [];
     for (var _i = 0; _i < arguments.length; _i++) {
         arg[_i] = arguments[_i];
     }
-    return arg[0].every(function (item) { return arg.splice(1).includes(item); });
+    return arg.shift().every(function (item) { return arg.includes(item); });
 }
+// 2
 function summator() {
     var arg = [];
     for (var _i = 0; _i < arguments.length; _i++) {
@@ -13,6 +15,7 @@ function summator() {
     }
     return arg.reduce(function (item, summ) { return summ + parseInt(item, 10); }, 0);
 }
+// 3
 function getUnique() {
     var arg = [];
     for (var _i = 0; _i < arguments.length; _i++) {
@@ -21,4 +24,20 @@ function getUnique() {
     var unique = new Set();
     arg.forEach(function (item) { return (unique.add(item)); });
     return Array.from(unique);
+}
+function revertWord(word) {
+    var start = word.split('');
+    var reg = /^[a-zA-Z]+$/;
+    var toRevert = start.filter(function (letter) { return reg.test(letter); }).reverse();
+    var i = 0;
+    return start.map(function (letter) {
+        if (reg.test(letter)) {
+            return toRevert[i++];
+        }
+        return letter;
+    }).join('');
+}
+// 4
+function revertSugWords(sug) {
+    return sug.split(' ').map(function (word) { return revertWord(word); }).join(' ');
 }
