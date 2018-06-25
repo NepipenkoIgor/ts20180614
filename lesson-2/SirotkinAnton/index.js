@@ -13,3 +13,12 @@ function summator() {
     }
     return arg.reduce(function (item, summ) { return summ + parseInt(item, 10); }, 0);
 }
+function getUnique() {
+    var arg = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        arg[_i] = arguments[_i];
+    }
+    var unique = new Set();
+    arg.forEach(function (item) { return (unique.add(item)); });
+    return Array.from(unique);
+}
