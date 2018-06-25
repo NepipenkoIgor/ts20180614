@@ -49,13 +49,43 @@ function getUnique() {
 var u = getUnique(5, 6, 5, '6', 88, 907, 22, 108, 22);
 console.log(u);
 function reverseData(text) {
+    return text
+        .split(' ')
+        .map(_check)
+        .join(' ');
+}
+function _check(word) {
+    var p = _getNoWord(word), wordLength = word.length;
+    var count = 0;
+    var dumb = word.match(/[^\W\d]/gi) || [];
     var output = '';
-    var result;
-    var regexp = /\w/gi;
-    while (result = regexp.exec(text)) {
-        alert('Найдено: ' + result[0] + ' на позиции:' + result.index);
-        alert('Свойство lastIndex: ' + regexp.lastIndex);
+    if (dumb.length) {
+        dumb = dumb.reverse();
+        for (var i = 0; i < wordLength; i++) {
+            output += p[i] || dumb[count];
+            if (!p[i])
+                count++;
+        }
     }
+    else
+        output = p.join();
     return output;
 }
-reverseData('s1ta$%r3t 2 hel^low');
+function _getNoWord(word) {
+    var result = [], r;
+    var regexp = /[\W\d]/gi;
+    while ((r = regexp.exec(word))) {
+        var lit = r[0], pos = r.index;
+        result[pos] = lit;
+    }
+    return result;
+}
+var r1 = reverseData('s1tar3t 2 hellow');
+console.log(r1);
+// s1tar3t 2 hellow
+var r2 = reverseData('s1ta$%r3t 2 hel^low');
+console.log(r2);
+// s1ta$%r3t 2 hel^low
+var r3 = reverseData('s1tar3t 2   low5');
+console.log(r3);
+// s1tar3t 2   low5
