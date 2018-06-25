@@ -9,7 +9,7 @@ class MySlider extends AbstractSlider {
 
         this._isDragging = false;
     }
-    
+
     /**
      * Returns value which is gte this._minValue && lte this._maxValue
      */
@@ -39,8 +39,8 @@ class MySlider extends AbstractSlider {
         return ctnr;
     }
 
-    public onPositionChange(newValue: number, prevValue: number): void {
-        // should be implemented in place
+    onPositionChange(newValue: number, prevValue: number) {
+        this._onChangeCb(newValue, prevValue);
     }
 
     private onDragStart(ev: DragEvent): void {
