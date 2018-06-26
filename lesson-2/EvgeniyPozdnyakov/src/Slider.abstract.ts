@@ -24,6 +24,7 @@ abstract class AbstractSlider {
 
     public set value(value: number) {
         this._value = this.limitValue(value);
+        this.redrawHandle();
     }
 
     /**
@@ -36,18 +37,30 @@ abstract class AbstractSlider {
      * @param newValue
      * @param prevValue
      */
-    abstract onPositionChange(newValue: number, prevValue: number): void;
+    protected abstract onPositionChange(newValue: number, prevValue: number): void;
+
+    /**
+     * Handle window resize
+     */
+    protected abstract onWindowResize(this: Window, ev: UIEvent): void;
 
     createSliderAt(ctnr: HTMLDivElement, onPositionChange: OnPositionChangeCb): void {
         this._sliderElement = this.createSlider();
         this._onChangeCb = onPositionChange;
 
         ctnr.appendChild(this._sliderElement);
+        this.redrawHandle();
+
+        window.addEventListener('resize', this.onWindowResize.bind(this));
     }
 
     destroySlider(): void {
+        window.removeEventListener('resize', this.onWindowResize.bind(this));
+
         this._sliderElement.remove();
     }
+
+    protected abstract redrawHandle(): void;
 }
 
 export default AbstractSlider;
