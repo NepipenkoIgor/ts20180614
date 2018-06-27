@@ -82,10 +82,10 @@ function _getNoWord(word) {
 }
 var r1 = reverseData('s1tar3t 2 hellow');
 console.log(r1);
-// s1tar3t 2 hellow
+// t1rat3s 2 wolleh
 var r2 = reverseData('s1ta$%r3t 2 hel^low');
 console.log(r2);
-// s1ta$%r3t 2 hel^low
+// t1ra$%t3s 2 wol^leh
 var r3 = reverseData('s1tar3t 2   low5');
 console.log(r3);
-// s1tar3t 2   low5
+// t1rat3s 2   wol5
