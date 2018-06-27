@@ -18,10 +18,6 @@ function isString(arg: string | number): arg is string {
     return typeof arg === 'string';
 }
 
-function isStrNotUndef(arg: string | undefined): arg is string {
-    return typeof arg === 'string';
-}
-
 
 function getUnique(...arr: any[]): Set<any> {
     const res = new Set();

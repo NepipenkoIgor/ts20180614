@@ -24,9 +24,6 @@ function summator() {
 function isString(arg) {
     return typeof arg === 'string';
 }
-function isStrNotUndef(arg) {
-    return typeof arg === 'string';
-}
 function getUnique() {
     var arr = [];
     for (var _i = 0; _i < arguments.length; _i++) {
